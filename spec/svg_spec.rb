@@ -84,8 +84,14 @@ RSpec.describe Initials::SVG do
     end
 
     describe "svg tag" do
+      let(:options) { {tag_options: {css: "class1 class2", "aria-label": "This is a label"}} }
+
       it "has valid xmlns attribute" do
         expect(subject.to_s).to match(/^<svg xmlns='http:\/\/www.w3.org\/2000\/svg'.+<\/svg>/)
+      end
+
+      it "has tags and values passed as options" do
+        expect(rick.to_s).to match(/ css='class1 class2' aria-label='This is a label'/)
       end
     end
 
